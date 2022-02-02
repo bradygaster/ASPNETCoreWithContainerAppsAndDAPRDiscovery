@@ -1,0 +1,26 @@
+name: dotnet-containerapp-sample
+
+services:
+- name: orders
+  executable: dapr
+  args: run --app-id orders --app-port 5001 -- dotnet run --project ./DotNetOnContainerApps.APIs.Orders.csproj --urls "http://localhost:5001"
+  workingDirectory: ./DotNetOnContainerApps.APIs.Orders/
+  bindings: # optional array of bindings (ports, connection strings)
+  - port: 5001 # number port of the binding
+    protocol: http
+
+- name: catalog
+  executable: dapr
+  args: run --app-id catalog --app-port 5002 -- dotnet run --project ./DotNetOnContainerApps.APIs.Catalog.csproj --urls "http://localhost:5002"
+  workingDirectory: ./DotNetOnContainerApps.APIs.Catalog/
+  bindings: # optional array of bindings (ports, connection strings)
+  - port: 5002 # number port of the binding
+    protocol: http
+  
+- name: frontend
+  executable: dapr
+  args: run --app-id frontend --app-port 5213 -- dotnet run --project ./DotNetOnContainerApps.FrontEnd.csproj --urls "http://localhost:5213"
+  workingDirectory: ./DotNetOnContainerApps.FrontEnd/
+  bindings: # optional array of bindings (ports, connection strings)
+  - port: 5213 # number port of the binding
+    protocol: http

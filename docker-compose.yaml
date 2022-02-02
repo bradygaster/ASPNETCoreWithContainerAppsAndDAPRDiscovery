@@ -1,0 +1,32 @@
+version: '3.4' 
+
+services:
+
+  catalog:
+    image: "${acrLoginServer}/catalog:latest"
+    build:
+      context: .
+      dockerfile: DotNetOnContainerApps.APIs.Catalog/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    hostname: catalog
+
+  orders:
+    image: "${acrLoginServer}/orders:latest"
+    build:
+      context: .
+      dockerfile: DotNetOnContainerApps.APIs.Orders/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    hostname: orders
+
+  frontend:
+    image: "${acrLoginServer}/frontend:latest"
+    build:
+      context: .
+      dockerfile: DotNetOnContainerApps.FrontEnd/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    hostname: frontend
+    
+          
