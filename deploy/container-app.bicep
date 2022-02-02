@@ -8,7 +8,6 @@ param allowInternalIngress bool = false
 param targetIngressPort int = 80
 param registry string
 param registryUsername string
-param daprPort int = 3500
 param daprComponents array = []
 @secure()
 param registryPassword string
@@ -53,7 +52,7 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = {
       dapr: {
         enabled: true
         appId: name
-        appPort: daprPort
+        appPort: targetIngressPort
         components: daprComponents
       }
     }
