@@ -3,8 +3,8 @@ param location string = resourceGroup().location
 param containerAppEnvironmentId string
 param repositoryImage string
 param envVars array = []
-param allowExternalIngress bool = true
-param allowInternalIngress bool = false
+param allowExternalIngress bool = false
+param allowInternalIngress bool = true
 param targetIngressPort int = 80
 param registry string
 param registryUsername string

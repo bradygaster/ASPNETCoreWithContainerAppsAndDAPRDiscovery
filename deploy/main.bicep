@@ -25,6 +25,8 @@ module catalog_api 'container-app.bicep' = {
     registryPassword: registryPassword
     registryUsername: registryUsername
     repositoryImage: catalog_api_image
+    allowExternalIngress: false
+    allowInternalIngress: true
   }
 }
 
@@ -37,6 +39,8 @@ module orders_api 'container-app.bicep' = {
     registryPassword: registryPassword
     registryUsername: registryUsername
     repositoryImage: orders_api_image
+    allowExternalIngress: false
+    allowInternalIngress: true
   }
 }
 
@@ -49,6 +53,8 @@ module ui 'container-app.bicep' = {
     registryPassword: registryPassword
     registryUsername: registryUsername
     repositoryImage: ui_image
+    allowExternalIngress: true
+    allowInternalIngress: false
     envVars : [
       {
         name: 'ASPNETCORE_ENVIRONMENT'
